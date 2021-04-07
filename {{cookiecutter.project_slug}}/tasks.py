@@ -46,9 +46,9 @@ def format_code(c, check=False):
     Format code
     """
     python_dirs_string = " ".join(PYTHON_DIRS)
-    # Run yapf
-    yapf_options = '--recursive {}'.format('--diff' if check else '--in-place')
-    _run(c, "yapf {} {}".format(yapf_options, python_dirs_string))
+    # Run black
+    black_options = "--check --diff" if check else ""
+    _run(c, "black {} {}".format(black_options, python_dirs_string))
 
 
 @task(help={'check': "Checks if source is formatted without applying changes"})

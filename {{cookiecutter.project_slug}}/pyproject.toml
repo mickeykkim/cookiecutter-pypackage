@@ -51,7 +51,7 @@ pylint = "*"
 pytest = "*"{% endif %}
 sphinx = "*"
 tox = "*"
-yapf = "*"
+black = "*"
 
 {% if cookiecutter.command_line_interface|lower == 'click' -%}
 [tool.poetry.scripts]
