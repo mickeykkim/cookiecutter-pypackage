@@ -41,7 +41,7 @@ def _run(c, command):
 
 
 @task(help={'check': "Checks if source is formatted without applying changes"})
-def format(c, check=False):
+def format_code(c, check=False):
     """
     Format code
     """
@@ -49,10 +49,27 @@ def format(c, check=False):
     # Run yapf
     yapf_options = '--recursive {}'.format('--diff' if check else '--in-place')
     _run(c, "yapf {} {}".format(yapf_options, python_dirs_string))
+
+
+@task(help={'check': "Checks if source is formatted without applying changes"})
+def format_imports(c, check=False):
+    """
+    Format code
+    """
+    python_dirs_string = " ".join(PYTHON_DIRS)
     # Run isort
     isort_options = '--recursive {}'.format(
         '--check-only --diff' if check else '')
     _run(c, "isort {} {}".format(isort_options, python_dirs_string))
+
+
+@task(help={'check': "Checks if source is formatted without applying changes"})
+def format(c, check=False):
+    """
+    Run all formatting
+    """
+    format_code(c, check)
+    format_imports(c, check)
 
 
 @task
