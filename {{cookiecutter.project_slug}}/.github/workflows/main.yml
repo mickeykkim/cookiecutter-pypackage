@@ -21,8 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: [3.6, 3.7, 3.8, 3.9]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
+# escape any jinja templating in this section to avoid cookiecutter conflicts
+{% raw %}
     steps:
       # Checkout out repo and setup python
       - uses: actions/checkout@v2
@@ -48,3 +50,4 @@ jobs:
         run: pip install tox
       - name: Run Tox
         run: tox -e py
+{% endraw %}
