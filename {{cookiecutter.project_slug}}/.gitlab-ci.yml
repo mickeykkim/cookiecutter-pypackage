@@ -1,0 +1,116 @@
+# Config file for GitLab CI pipeline
+
+variables:
+  PUBLISH_TAG_NAME: ${CI_COMMIT_REF_NAME}
+
+stages:
+  - build
+  - compliance
+  - test
+  - publish
+
+.preparation:
+  before_script:
+    - apk update && apk add git
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+
+.poetry-install: &poetry-install
+  # In case the packages get updated without updating the docker container image
+  - poetry config repositories.gel_pypi {{ cookiecutter.pypi_url }}
+  - poetry config virtualenvs.create false
+  - poetry install --no-interaction --no-ansi
+
+.poetry_image: &poetry_image
+  image: $CI_REGISTRY_IMAGE/poetry:latest
+  before_script:
+    - *poetry-install
+
+# Jobs: Build -----------------------------------------------------------------
+
+build:
+  stage: build
+  script:
+    - PYTHON_VERSION=${python_version} PYPI_URL=${pip_repository_index} invoke pull
+    - PYTHON_VERSION=${python_version} PYPI_URL=${pip_repository_index} invoke build
+    - PYTHON_VERSION=${python_version} PYPI_URL=${pip_repository_index} invoke push
+  tags:
+    - executor:docker
+    - location:aws
+  only:
+    refs:
+      - merge_requests
+      - triggers
+      - master
+      - tags
+      - /^v[0-9]+.[0-9]+.*/
+  extends:
+    - .preparation
+  parallel:
+    matrix:
+      - python_version: ["3.9", "3.10"]
+
+# Jobs: Compliance ------------------------------------------------------------
+
+compliance:
+  <<: *poetry_image
+  tags:
+    - executor:docker
+    - location:aws
+  stage: compliance
+  script:
+      - invoke format --check
+      - invoke lint
+  only:
+    refs:
+      - merge_requests
+      - triggers
+      - master
+      - tags
+      - /^v[0-9]+.[0-9]+.*/
+  extends:
+    - .preparation
+  parallel:
+    matrix:
+      - python_version: ["3.9", "3.10"]
+
+# Jobs: Test ------------------------------------------------------------------
+
+test:
+  <<: *poetry_image
+  stage: test
+  script:
+    - invoke test --junit --coverage="xml"
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: artifacts/coverage.xml
+      junit: artifacts/report.xml
+  tags:
+    - executor:docker
+    - location:aws
+  only:
+    refs:
+      - merge_requests
+      - triggers
+      - master
+      - tags
+      - /^v[0-9]+.[0-9]+.*/
+  parallel:
+    matrix:
+      - python_version: ["3.9", "3.10"]
+
+# Jobs: Publish ---------------------------------------------------------------
+
+build_and_publish_pypi:
+  <<: *poetry_image
+  stage: publish
+  script:
+    - invoke publish
+  tags:
+    - executor:docker
+    - location:aws
+  only:
+    refs:
+      - tags
+      - /^v[0-9]+.[0-9]+.*/

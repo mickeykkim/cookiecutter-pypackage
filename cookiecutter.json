@@ -1,17 +1,16 @@
 {
-  "full_name": "Sam Briggs",
-  "email": "briggySmalls@example.com",
-  "github_username": "briggySmalls",
+  "full_name": "Mickey Kim",
+  "email": "mickeykim@example.com",
+  "gitlab_username": "mickeykimgel",
   "project_name": "Python Boilerplate",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package.",
-  "pypi_username": "{{ cookiecutter.github_username }}",
+  "pypi_username": "{{ cookiecutter.gitlab_username }}",
   "version": "0.1.0",
-  "use_pytest": "y",
-  "use_pypi_deployment_with_travis": "y",
-  "add_pyup_badge": "n",
-  "command_line_interface": ["Click", "Argparse", "No command-line interface"],
+  "use_mypy": "y",
+  "use_pylint": "y",
+  "line_length": 120,
+  "pypi_url": "https://artifactory.aws.gel.ac/artifactory/api/pypi/pypi/simple",
   "create_author_file": "y",
-  "open_source_license": ["MIT", "BSD-3-Clause", "ISC", "Apache-2.0", "GPL-3.0-only", "Not open source"],
-  "use_google_docstrings": "y"
+  "open_source_license": ["MIT", "BSD-3-Clause", "ISC", "Apache-2.0", "GPL-3.0-only", "Not open source"]
 }

@@ -9,7 +9,6 @@
 [tool.poetry]
 name = "{{ cookiecutter.project_slug }}"
 version = "{{ cookiecutter.version }}"
-homepage = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 description = "Top-level package for {{ cookiecutter.project_name }}."
 authors = ["{{ cookiecutter.full_name.replace('\"', '\\\"') }} <{{ cookiecutter.email }}>"]
 readme = "README.rst"
@@ -24,41 +23,71 @@ classifiers=[
 {%- endif %}
     'Natural Language :: English',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
 ]
 packages = [
     { include = "{{ cookiecutter.project_slug }}" },
     { include = "tests", format = "sdist" },
 ]
 
+[[tool.poetry.source]]
+name = "gel_pypi"
+url = "{{ cookiecutter.pypi_url }}"
+
 [tool.poetry.dependencies]
 python = "*"
-{%- if cookiecutter.command_line_interface|lower == 'click' %}
-click = "*"
-{%- endif %}
 
 [tool.poetry.dev-dependencies]
 bumpversion = "*"
 coverage = "*"
 flake8 = "*"
+flake8-bugbear = "*"
 invoke = "*"
 isort = "*"
+{% if cookiecutter.use_mypy == 'y' -%}
+mypy = "*"
+{% endif -%}
+{% if cookiecutter.use_pylint == 'y' -%}
 pylint = "*"
-{% if cookiecutter.use_pytest == 'y' -%}
-pytest = "*"{% endif %}
+{% endif -%}
+pytest = "*"
 sphinx = "*"
 tox = "*"
-yapf = "*"
-mypy = "*"
 types-requests = "*"
 
-{% if cookiecutter.command_line_interface|lower == 'click' -%}
-[tool.poetry.scripts]
-{{ cookiecutter.project_slug }} = '{{ cookiecutter.project_slug }}.cli:main'
-{%- endif %}
+[tool.pytest.ini_options]
+minversion = "6.0"
+filterwarnings = "ignore::DeprecationWarning"
+
+[tool.black]
+line-length = {{ cookiecutter.line_length }}
+
+[tool.isort]
+profile = "black"
+
+[tool.coverage.report]
+exclude_lines = ["if __name__ == .__main__.:"]
+skip_empty = true
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = true
+envlist = py3.9, py3.10
+
+[testenv]
+description = Run compliance tests
+whitelist_externals = poetry
+setenv =
+    PIP_EXTRA_INDEX_URL = {{ cookiecutter.pypi_url }}
+require_locked_deps = true
+install_dev_deps = true
+commands =
+    poetry run invoke format --check
+    poetry run invoke lint
+    poetry run invoke test --junit --coverage="xml"
+"""
 
 [build-system]
 requires = ["poetry>=0.12"]

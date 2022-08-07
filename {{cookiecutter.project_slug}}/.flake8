@@ -1,0 +1,7 @@
+[flake8]
+ignore = E203, W503
+select = B,B9,C,E,F,W
+max-complexity = 9
+max-line-length = {{ cookiecutter.line_length }}
+per-file-ignores =
+    test/*:S101

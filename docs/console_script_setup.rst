@@ -9,10 +9,6 @@ Optionally, your package can include a console script using Click or argparse (P
 How It Works
 ------------
 
-If the 'command_line_interface' option is set to ['click'] or ['argparse'] during setup, cookiecutter will
-add a file 'cli.py' in the project_slug subdirectory. An entry point is added to
-pyproject.toml that points to the main function in cli.py.
-
 Usage
 ------------
 To use the console script in development:

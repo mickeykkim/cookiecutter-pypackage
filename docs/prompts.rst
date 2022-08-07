@@ -14,8 +14,8 @@ full_name
 email
     Your email address.
 
-github_username
-    Your GitHub username.
+gitlab_username
+    Your GitLab username.
 
 project_name
     The name of your new Python package project. This is used in documentation, so spaces and any characters are fine here.
@@ -43,13 +43,13 @@ Options
 
 The following package configuration options set up different features for your project.
 
-use_pypi_deployment_with_travis
-    Whether to use PyPI deployment with Travis.
+use_mypy
+    Whether to use mypy for type hinting validation.
 
-command_line_interface
-    Whether to create a console script using Click. Console script entry point will match the project_slug. Options: ['Click', "No command-line interface"]
+use_pylint
+    Whether to use pylint for linting.
 
-use_google_docstrings
-    Whether to support parsing docstrings in the `Google Python Style Guide`_ format.
+line_length
+    Maximum line length for formatting and validation.
 
 .. _Google Python Style Guide: https://github.com/google/styleguide/blob/gh-pages/pyguide.md#38-comments-and-docstrings

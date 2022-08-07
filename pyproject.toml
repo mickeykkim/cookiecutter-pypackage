@@ -1,17 +1,17 @@
 [tool]
 [tool.poetry]
 name = "cookiecutter-pypackage"
-version = "0.2.0"
-description = "Cookiecutter template for a Python package"
+version = "0.1.0"
+description = "Cookiecutter template for a Genomics England Python package"
 license = "BSD-3-Clause"
-authors = ["Sam Briggs <briggySmalls90@gmail.com>"]
+authors = ["Mickey Kim <mickey.kim@genomicsengland.co.uk>"]
 readme = "README.rst"
-repository = "https://github.com/briggySmalls/cookiecutter-pypackage"
-documentation = "https://briggysmalls.github.io/cookiecutter-pypackage"
+repository = "https://gitlab.com/genomicsengland/opensource/templates/cookiecutter-pypackage"
+documentation = "https://gitlab.com/genomicsengland/opensource/templates/cookiecutter-pypackage"
 keywords = ['cookiecutter', 'template', 'package']
 
 [tool.poetry.dependencies]
-python = ">=3.5.*"
+python = "^3.9"
 
 [tool.poetry.dev-dependencies]
 bump2version = "*"
@@ -23,4 +23,22 @@ pytest-cookies = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
 tox = "*"
-pyyaml = "^5.3.1"
+pyyaml = "*"
+
+[tool.pytest.ini_options]
+testpaths = "tests/"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = true
+envlist = py3.9, py3.10
+
+[testenv]
+description = Run compliance tests
+whitelist_externals = poetry
+require_locked_deps = true
+install_dev_deps = true
+commands =
+    poetry run invoke test
+"""

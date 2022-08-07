@@ -34,9 +34,7 @@ import {{ cookiecutter.project_slug }}
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
-{%- if cookiecutter.use_google_docstrings == 'y' %}
     'sphinx.ext.napoleon',
-{%- endif %}
 ]
 
 # Add any paths that contain templates here, relative to this directory.
