@@ -5,7 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Console Script Setup &mdash; cookiecutter-pypackage 0.9.0 documentation</title>
@@ -21,10 +22,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -33,6 +36,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Travis/PyPI Setup" href="travis_pypi_setup.html" /> 
@@ -164,19 +169,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="console-script-setup">
-<span id="id1"></span><h1>Console Script Setup<a class="headerlink" href="#console-script-setup" title="Permalink to this headline">¶</a></h1>
+  <section id="console-script-setup">
+<span id="id1"></span><h1>Console Script Setup<a class="headerlink" href="#console-script-setup" title="Permalink to this heading">¶</a></h1>
 <p>Optionally, your package can include a console script using Click or argparse (Python 3.2+).</p>
-<div class="section" id="how-it-works">
-<h2>How It Works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
+<section id="how-it-works">
+<h2>How It Works<a class="headerlink" href="#how-it-works" title="Permalink to this heading">¶</a></h2>
 <p>If the ‘command_line_interface’ option is set to [‘click’] or [‘argparse’] during setup, cookiecutter will
 add a file ‘cli.py’ in the project_slug subdirectory. An entry point is added to
 pyproject.toml that points to the main function in cli.py.</p>
-</div>
-<div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
 <p>To use the console script in development:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -e projectdir
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>projectdir
 </pre></div>
 </div>
 <p>‘projectdir’ should be the top level project directory with the pyproject.toml file</p>
@@ -186,13 +191,13 @@ pyproject.toml that points to the main function in cli.py.</p>
 <dd><p>show help menu and exit</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="more-details">
-<h2>More Details<a class="headerlink" href="#more-details" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="more-details">
+<h2>More Details<a class="headerlink" href="#more-details" title="Permalink to this heading">¶</a></h2>
 <p>You can read more about Click at:
 <a class="reference external" href="http://click.pocoo.org/">http://click.pocoo.org/</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

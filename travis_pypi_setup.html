@@ -5,7 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Travis/PyPI Setup &mdash; cookiecutter-pypackage 0.9.0 documentation</title>
@@ -21,10 +22,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -33,6 +36,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Console Script Setup" href="console_script_setup.html" />
@@ -166,12 +171,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="travis-pypi-setup">
-<span id="id1"></span><h1>Travis/PyPI Setup<a class="headerlink" href="#travis-pypi-setup" title="Permalink to this headline">¶</a></h1>
+  <section id="travis-pypi-setup">
+<span id="id1"></span><h1>Travis/PyPI Setup<a class="headerlink" href="#travis-pypi-setup" title="Permalink to this heading">¶</a></h1>
 <p>Optionally, your package can automatically be released on PyPI whenever you
 push a new tag to the master branch.</p>
-<div class="section" id="install-the-travis-cli-tool">
-<h2>Install the Travis CLI tool<a class="headerlink" href="#install-the-travis-cli-tool" title="Permalink to this headline">¶</a></h2>
+<section id="install-the-travis-cli-tool">
+<h2>Install the Travis CLI tool<a class="headerlink" href="#install-the-travis-cli-tool" title="Permalink to this heading">¶</a></h2>
 <p>This is OS-specific.</p>
 <p>### macOS</p>
 <p>We recommend the Homebrew travis package:</p>
@@ -181,20 +186,20 @@ push a new tag to the master branch.</p>
 <p>### Windows and Linux</p>
 <p>Follow the official Travis CLI installationinstructions for your operating system:</p>
 <p><a class="reference external" href="https://github.com/travis-ci/travis.rb#installation">https://github.com/travis-ci/travis.rb#installation</a></p>
-</div>
-<div class="section" id="how-it-works">
-<h2>How It Works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="how-it-works">
+<h2>How It Works<a class="headerlink" href="#how-it-works" title="Permalink to this heading">¶</a></h2>
 <p>Once you have the <cite>travis</cite> command - line tool installed, from the root of your project do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">travis</span> <span class="n">encrypt</span> <span class="o">--</span><span class="n">add</span> <span class="n">deploy</span><span class="o">.</span><span class="n">password</span>
 </pre></div>
 </div>
 <p>This will encrypt your locally-stored PyPI password and save that to your <cite>.travis.yml</cite> file. Commit that change to git.</p>
-</div>
-<div class="section" id="your-release-process">
-<h2>Your Release Process<a class="headerlink" href="#your-release-process" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="your-release-process">
+<h2>Your Release Process<a class="headerlink" href="#your-release-process" title="Permalink to this heading">¶</a></h2>
 <p>If you are using this feature, this is how you would do a patch release:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bump2version patch
-git push --tags
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bump2version<span class="w"> </span>patch
+git<span class="w"> </span>push<span class="w"> </span>--tags
 </pre></div>
 </div>
 <p>This will result in:</p>
@@ -203,13 +208,13 @@ git push --tags
 <li><p>mypackage 0.1.1 getting released on PyPI</p></li>
 </ul>
 <p>You can also replace patch with <cite>minor</cite> or <cite>major</cite>.</p>
-</div>
-<div class="section" id="more-details">
-<h2>More Details<a class="headerlink" href="#more-details" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="more-details">
+<h2>More Details<a class="headerlink" href="#more-details" title="Permalink to this heading">¶</a></h2>
 <p>You can read more about using Travis for PyPI deployment at:
 <a class="reference external" href="https://docs.travis-ci.com/user/deployment/pypi/">https://docs.travis-ci.com/user/deployment/pypi/</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

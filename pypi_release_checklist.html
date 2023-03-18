@@ -5,7 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>PyPI Release Checklist &mdash; cookiecutter-pypackage 0.9.0 documentation</title>
@@ -21,10 +22,12 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -33,6 +36,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Prompts" href="prompts.html" />
@@ -164,23 +169,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pypi-release-checklist">
-<h1>PyPI Release Checklist<a class="headerlink" href="#pypi-release-checklist" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="for-every-release">
-<h2>For Every Release<a class="headerlink" href="#for-every-release" title="Permalink to this headline">¶</a></h2>
+  <section id="pypi-release-checklist">
+<h1>PyPI Release Checklist<a class="headerlink" href="#pypi-release-checklist" title="Permalink to this heading">¶</a></h1>
+<section id="for-every-release">
+<h2>For Every Release<a class="headerlink" href="#for-every-release" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>Update HISTORY.rst</p></li>
 <li><p>Commit the changes:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add HISTORY.rst
-git commit -m <span class="s2">&quot;Changelog for upcoming release 0.1.1.&quot;</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>HISTORY.rst
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Changelog for upcoming release 0.1.1.&quot;</span>
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Update version number (can also be patch or major)</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bump2version minor
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bump2version<span class="w"> </span>minor
 </pre></div>
 </div>
 </div></blockquote>
@@ -194,14 +199,14 @@ git commit -m <span class="s2">&quot;Changelog for upcoming release 0.1.1.&quot;
 </li>
 <li><p>Push the commit:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>Push the tags, creating the new release on both GitHub and PyPI:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push --tags
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>--tags
 </pre></div>
 </div>
 </div></blockquote>
@@ -212,9 +217,9 @@ git commit -m <span class="s2">&quot;Changelog for upcoming release 0.1.1.&quot;
 <li><p>Copy and paste the RestructuredText into <a class="reference external" href="http://rst.ninjs.org/">http://rst.ninjs.org/</a> to find out what broke the formatting.</p></li>
 <li><p>Check your long_description locally:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install readme_renderer
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>readme_renderer
 <span class="c1"># Replace PROBLEM.rst with the name of the file you are having trouble with</span>
-python -m readme_renderer PROBLEM.rst &gt;/dev/null
+python<span class="w"> </span>-m<span class="w"> </span>readme_renderer<span class="w"> </span>PROBLEM.rst<span class="w"> </span>&gt;/dev/null
 </pre></div>
 </div>
 </div></blockquote>
@@ -224,17 +229,17 @@ python -m readme_renderer PROBLEM.rst &gt;/dev/null
 </li>
 <li><p>Edit the release on GitHub (e.g. <a class="reference external" href="https://github.com/audreyr/cookiecutter/releases">https://github.com/audreyr/cookiecutter/releases</a>). Paste the release notes into the release’s release page, and come up with a title for the release.</p></li>
 </ol>
-</div>
-<div class="section" id="about-this-checklist">
-<h2>About This Checklist<a class="headerlink" href="#about-this-checklist" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="about-this-checklist">
+<h2>About This Checklist<a class="headerlink" href="#about-this-checklist" title="Permalink to this heading">¶</a></h2>
 <p>This checklist is adapted from:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://gist.github.com/audreyr/5990987">https://gist.github.com/audreyr/5990987</a></p></li>
 <li><p><a class="reference external" href="https://gist.github.com/audreyr/9f1564ea049c14f682f4">https://gist.github.com/audreyr/9f1564ea049c14f682f4</a></p></li>
 </ul>
 <p>It assumes that you are using all features of Cookiecutter PyPackage.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
